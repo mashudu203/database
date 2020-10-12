@@ -1,0 +1,29 @@
+<div class="addusers" >
+    <form  (ngSubmit)="AddUsers(UserData)"  (ngSubmit)="Update(UserData)"  #UserData="ngForm">
+  <input name="name" placeholder="name"ngModel required #name="ngModel">
+  <input name="surname"placeholder="surname" ngModel required #surname="ngModel">
+  <textarea  name="address" placeholder="student address" ngModel required #address="ngModel" rows="4" cols="50"></textarea>
+  <input name="contact"placeholder="contact number" ngModel required #contact="ngModel">
+  <input name="course"placeholder="student registerd course" ngModel required #course="ngModel">
+  <button type="submit" [disabled]="UserData.invalid">Add user </button>
+  {{msg}}
+  
+  
+  
+  </form>    
+  <div class="users">
+  <h4>List of persons</h4>
+  <ul>
+   <li *ngFor="let item of persons"  [routerLink]="['/details',item.payload.doc.id]"routerLinkActive="router-link-active">
+  <p class="name">{{item.payload.doc.data().name}}&nbsp;&nbsp; {{item.payload.doc.data().surname}}</p>
+ 
+    </li>
+    
+  </ul>
+  <!--<ul>_fire.collection('database name").doc(id/ref).
+    (click)="deleteUser(item.payload.doc.id)"
+    <li  *ngFor="let item of persons">
+  {{item.name}}
+      </li>
+  </ul>-->
+</div>

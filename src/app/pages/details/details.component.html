@@ -1,0 +1,23 @@
+
+<!--<div *ngIf="persons" >
+    <p>
+    Name:{{persons.name}}<br>
+    Surname:{{persons.surname}}<br>
+    Address:{{persons.address}}<br>
+    contact:{{persons.contact}}<br>
+    course:{{persons.course}}<br></p>
+    course:{{persons.id}}
+    </div>-->
+   <form *ngIf="persons"(ngSubmit)="Update(UserData)" #UserData="ngForm">
+        <input name="name"  [(ngModel)]="persons.name" ngModel #name="ngModel">
+        <input name="surname" [(ngModel)]="persons.surname"  ngModel #surname="ngModel">
+        <textarea  name="address" [(ngModel)]="persons.address" ngModel #address="ngModel" rows="4" cols="50"></textarea>
+        <input name="contact" [(ngModel)]="persons.contact" ngModel #contact="ngModel">
+        <input name="course" [(ngModel)]="persons.course" ngModel #course="ngModel">
+        
+        <button type="submit">updateuser</button>
+        <button  (click)="deleteUser(persons.id)">delete</button>
+    
+    
+        </form>
+        {{msg}}

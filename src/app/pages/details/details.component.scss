@@ -1,0 +1,23 @@
+form{
+    width:40%;
+    padding: 2%;
+    background-color: gainsboro;
+}
+form input{
+    width:100%;
+    padding:2%;
+    border:1px black solid;
+    margin-top: 5px;
+}
+form button{
+    width: 100%;
+    background-color: blue;
+    color:white;
+    border:none;
+    padding:2%;
+    margin-top:10px;
+}
+.msg{
+    text-transform: capitalize;
+    color: red;
+}
