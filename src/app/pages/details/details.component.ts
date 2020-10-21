@@ -57,7 +57,7 @@ Update(UserData : NgForm){
   
   
 this._data.updateUser(this.Ref,UserData.value);
-this.msg = "user updated..... "; 
+
 
     
 } 
@@ -74,6 +74,6 @@ editItem(event, item: Item){
 deleteUser(ref){
   this.Ref =this._route.snapshot.paramMap.get('ref');
   this._data.deletepersons(this.Ref);
-  this.mash = "user deleted..... "; 
+
 }
 }

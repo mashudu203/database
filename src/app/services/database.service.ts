@@ -89,10 +89,10 @@ console.log('error occered:',err)
   // function for updating a user
   updateUser(ref,data){
    this._fire.collection('Users').doc(ref).update(data).then(result=>{
-    this.toastr.success('user added','');
+    this.toastr.success('user updated','');
     console.log('successfully updated user')
    }).catch(err=>{
-    this.toastr.error('error','');
+   
     console.log('error occered:',err)
   });
   }
@@ -104,7 +104,7 @@ return this._fire.collection('Users').doc(ref).delete().then(result=>{
   this.toastr.success('successfully deleted','');
   console.log('succefully deleted')
 }).catch(error=>{
-  this.toastr.error('error','');
+  
   console.log('not deleted:,',error)
 })
   }

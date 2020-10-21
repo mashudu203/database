@@ -14,7 +14,7 @@
   <div class="users" *ngIf="persons?.length > 0;else noItems" >
   <h4>List of persons</h4>
   <ul>
-   <li *ngFor="let item of persons"  >
+   <li *ngFor="let item of persons"  [routerLink]="['/details',item.payload.doc.id]"routerLinkActive="router-link-active">
   <p class="name">{{item.payload.doc.data().name}}&nbsp;&nbsp; {{item.payload.doc.data().surname}}</p>
  
     </li>
