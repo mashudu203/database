@@ -8,6 +8,7 @@
     course:{{persons.course}}<br></p>
     course:{{persons.id}}
     </div>-->
+    
    <form *ngIf="persons"(ngSubmit)="Update(UserData)" #UserData="ngForm">
         <input name="name"  [(ngModel)]="persons.name" ngModel #name="ngModel">
         <input name="surname" [(ngModel)]="persons.surname"  ngModel #surname="ngModel">
@@ -17,7 +18,7 @@
         
         <button type="submit">updateuser</button>
         <button  (click)="deleteUser(persons.id)">delete</button>
-    
+        {{msg}}
     
         </form>
-        {{msg}}
+      {{mash}}

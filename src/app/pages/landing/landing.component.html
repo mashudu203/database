@@ -1,9 +1,9 @@
 <div class="addusers" >
-    <form  (ngSubmit)="AddUsers(UserData)"  (ngSubmit)="Update(UserData)"  #UserData="ngForm">
+    <form  (ngSubmit)="AddUsers(UserData)"    #UserData="ngForm">
   <input name="name" placeholder="name"ngModel required #name="ngModel">
   <input name="surname"placeholder="surname" ngModel required #surname="ngModel">
   <textarea  name="address" placeholder="student address" ngModel required #address="ngModel" rows="4" cols="50"></textarea>
-  <input name="contact"placeholder="contact number" ngModel required #contact="ngModel">
+  <input name="contact"placeholder="contact number" type="tel" maxlength="10"ngModel required #contact="ngModel">
   <input name="course"placeholder="student registerd course" ngModel required #course="ngModel">
   <button type="submit" [disabled]="UserData.invalid">Add user </button>
   {{msg}}
@@ -11,10 +11,10 @@
   
   
   </form>    
-  <div class="users">
+  <div class="users" *ngIf="persons?.length > 0;else noItems" >
   <h4>List of persons</h4>
   <ul>
-   <li *ngFor="let item of persons"  [routerLink]="['/details',item.payload.doc.id]"routerLinkActive="router-link-active">
+   <li *ngFor="let item of persons"  >
   <p class="name">{{item.payload.doc.data().name}}&nbsp;&nbsp; {{item.payload.doc.data().surname}}</p>
  
     </li>
@@ -27,3 +27,8 @@
       </li>
   </ul>-->
 </div>
+
+<ng-template #noItems>
+  <hr>
+  <h5>There are no users to list</h5>
+</ng-template>

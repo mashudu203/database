@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {NgForm} from '@angular/forms';
 import { DatabaseService } from 'src/app/services/database.service';
+import { Item} from './../../services/users'
+import { ToastrService } from 'ngx-toastr';
+ 
+
+
+
+
 
 @Component({
   selector: 'app-landing',
@@ -13,12 +20,18 @@ export class LandingComponent implements OnInit {
   persons: any;
   Ref:any;
   msg:any="";
-  constructor(public _data: DatabaseService,public _route : ActivatedRoute) { }
+  Userinfo:any;
+  member:any;
+Name:any;
+Surname:any;
+  constructor(public _data: DatabaseService,public _route : ActivatedRoute,private toastr:ToastrService) { }
 
   AddUsers(UserData : NgForm){
 // add to database
-this._data.AddUser(UserData.value);
-this.msg = "Record is successfully added..... "; 
+     
+this._data.AddUser(UserData.value,UserData.value.name,UserData.value.surname);
+
+      
   }
   // delete user
   deleteUser(ref){
@@ -38,7 +51,13 @@ this.msg = "Record is successfully added..... ";
 this._data.GetUsers().snapshotChanges().subscribe(action =>{
 console.log(action);
 this.persons=action;
+
+
+  
 })
+
+
+
 
   }
 }

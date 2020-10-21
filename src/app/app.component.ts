@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {DatabaseService} from './services/database.service'
+import {DatabaseService} from './services/database.service';
+
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent {
 
   AddUsers(UserData : NgForm){
 // add to database
-this._data.AddUser(UserData.value);
+//this._data.AddUser(UserData.value);
   }
   // delete user
   deleteUser(ref){
@@ -26,6 +27,12 @@ this._data.AddUser(UserData.value);
 this._data.GetUsers().valueChanges().subscribe(action =>{
 console.log(action);
 this.persons=action;
+
+action.map(element=>{
+ 
+
+ 
+})
 })
 
   }

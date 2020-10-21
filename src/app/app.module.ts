@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingComponent } from './pages/landing/landing.component';
@@ -11,6 +12,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { DatabaseService } from './services/database.service';
 import { DetailsComponent } from './pages/details/details.component';
+
 
 
 @NgModule({
@@ -26,6 +28,13 @@ import { DetailsComponent } from './pages/details/details.component';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut:1000,
+      preventDuplicates:true,
+
+    }),
+    
   ],
   providers: [
     DatabaseService
