@@ -12,6 +12,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { DatabaseService } from './services/database.service';
 import { DetailsComponent } from './pages/details/details.component';
+import{AngularFireAuthModule} from '@angular/fire/auth';
 
 
 
@@ -29,6 +30,7 @@ import { DetailsComponent } from './pages/details/details.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     BrowserAnimationsModule,
+    AngularFireAuthModule,
     ToastrModule.forRoot({
       timeOut:1000,
       preventDuplicates:true,

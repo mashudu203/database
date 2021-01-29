@@ -15,6 +15,7 @@ export class DetailsComponent implements OnInit {
   itemToEdit: Item;
 
   persons: any;
+  personslogin: any;
   person: any;
   Subject:any;
   Ref:any;
@@ -75,5 +76,8 @@ deleteUser(ref){
   this.Ref =this._route.snapshot.paramMap.get('ref');
   this._data.deletepersons(this.Ref);
 
+}
+logout(){
+  this._data.logout();
 }
 }

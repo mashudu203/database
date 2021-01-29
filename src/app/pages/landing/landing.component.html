@@ -1,4 +1,30 @@
-<div class="addusers" >
+<form  (ngSubmit)="Register(UserData)"    #UserData="ngForm">
+  <input name="email" placeholder="email"ngModel required #email="ngModel">
+  <input type="password" name="password"placeholder="password" ngModel required #password="ngModel">
+  <button type="submit" [disabled]="UserData.invalid">register </button>
+  
+<p class="login">signin with google account</p>
+<button (click)="signinwithGoogle()">sign up with google</button>
+
+  
+  </form>
+  <form  (ngSubmit)="login(UseerData)"    #UseerData="ngForm">
+    <input name="email" placeholder="email"ngModel required #email="ngModel">
+    <input name="password" type="password" placeholder="password" ngModel required #password="ngModel">
+    <button type="submit">login </button>
+  </form>
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="addusers" >
     <form  (ngSubmit)="AddUsers(UserData)"    #UserData="ngForm">
   <input name="name" placeholder="name"ngModel required #name="ngModel">
   <input name="surname"placeholder="surname" ngModel required #surname="ngModel">
@@ -26,9 +52,11 @@
   {{item.name}}
       </li>
   </ul>-->
-</div>
+<!--</div>
 
 <ng-template #noItems>
   <hr>
   <h5>There are no users to list</h5>
 </ng-template>
+
+<button (click)="logout()">sign-out</button>-->

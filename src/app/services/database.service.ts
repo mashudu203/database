@@ -6,6 +6,12 @@ import {Item} from './users' ;
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+//import {firestore, auth} from 'firebase';
+import{AngularFireAuth} from '@angular/fire/auth';
+import { auth } from 'firebase';
+import { NgForm } from '@angular/forms';
+
+
 
 
 
@@ -20,9 +26,9 @@ export class DatabaseService {
   items: Observable<Item[]>;
   itemDoc: AngularFirestoreDocument<Item>;
 
-  constructor(public _fire:AngularFirestore,public _route : Router,private toastr:ToastrService) {
+  constructor(public _fire:AngularFirestore,public _route : Router,private toastr:ToastrService,private fireAuth: AngularFireAuth,public _routee : ActivatedRoute) {
   // this.items = this._fire.collection('Users').valueChanges();
-    
+  
     this.itemsCollection = this._fire.collection('Users', ref => ref.orderBy('id','asc'));
 
     this.items = this.itemsCollection.snapshotChanges().pipe(
@@ -40,6 +46,7 @@ export class DatabaseService {
  
   // FUNction to add user
   Users:any[];
+  Ref:any;
   AddUser(data,username,rname){
     this._fire.collection('Users', ref=>ref.where('name','==',username).where('surname','==',rname)).get().forEach(element=>{
       if(element.empty)
@@ -107,5 +114,41 @@ return this._fire.collection('Users').doc(ref).delete().then(result=>{
   
   console.log('not deleted:,',error)
 })
+  }
+
+  Register(data,email,password,){
+    this.fireAuth.createUserWithEmailAndPassword(email,password).then( cred=>{
+   // return this._fire.collection('Users').doc(cred.user.uid).set({ name:Userdata[name].value})
+      console.log('succeful registerd user')
+    }).catch(err=>{
+      console.log('Error',err.message)
+      console.log('Error',err.code)
+    })
+  }
+  login(email,password){
+    this.Ref =this._routee.snapshot.paramMap.get('ref');
+    this.fireAuth.signInWithEmailAndPassword(email,password).then(info=>{
+      this._route.navigate(['details/:ref']);
+    console.log('succefully login', info)
+
+    }).catch(info=>{
+      console.log('smothing went wrong',info.message)
+    })
+  }
+  logginGoogle(){
+    let provider=new auth.GoogleAuthProvider();
+    this.fireAuth.signInWithPopup(provider).then( ()=>{
+      console.log('login with google')
+    }).catch(err=>{
+      console.log('err',err.message)
+    })
+  }
+  logout(){
+    this.fireAuth.signOut().then(  ()=>{
+      this._route.navigate(['landing/']);
+      console.log('succefully singed out')
+    }).catch(err =>{
+      console.log('Err',err.message)
+    })
   }
 }

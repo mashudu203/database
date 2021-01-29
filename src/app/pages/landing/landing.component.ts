@@ -44,10 +44,24 @@ this._data.AddUser(UserData.value,UserData.value.name,UserData.value.surname);
     this.Update(this.Ref);
       
   }
- 
+  signinwithGoogle(){
+    this._data.logginGoogle();
+  }
+  logout(){
+    this._data.logout();
+  }
+  Register(UserData : NgForm){
+  
+this._data.Register(UserData.value,UserData.value.email,UserData.value.password);
+
+  }
+  login(UseerData : NgForm){
+    this._data.login(UseerData.value.email,UseerData.value.password);
+  }
   ngOnInit(){
     //display data on the database
-    
+
+ 
 this._data.GetUsers().snapshotChanges().subscribe(action =>{
 console.log(action);
 this.persons=action;
